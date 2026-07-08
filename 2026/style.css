@@ -1,5 +1,5 @@
 html {
-    background-image: url('adfa6df.png');
+    background-image: none;
     background-repeat: repeat;
     background-size: 100px 100px;
 }
@@ -18,12 +18,11 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 10px;
     margin-bottom: 20px;
 }
-marquee {
-    margin-bottom: 10px;
-    font-size: 1.2em;
-    color: red;
+.marquee-container {
+    display: none;
 }
 article {
     width: 100%;
@@ -32,23 +31,11 @@ article {
     background-color: #f9f9f9;
 }
 #images {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin: 20px 0;
+    display: none;
 }
 #images > img {
     width: 30%;
     height: auto;
-}
-@media (prefers-reduced-motion: reduce) {
-    marquee {
-        display: none;
-    }
-    #images > img {
-        display: none;
-    }
 }
 div > h2 {
     margin: 0;
@@ -71,4 +58,76 @@ footer {
     color: #888;
     display: flex;
     justify-content: center;
+}
+.toggle-group {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+}
+.toggle-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.toggle-label {
+    padding: 10px 20px;
+    background-color: darkgrey;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+}
+.toggle-label:hover {
+    background-color: grey;
+}
+.toggle-input:checked ~ .toggle-label .geocities { display: none; }
+.toggle-input:not(:checked) ~ .toggle-label .no-geocities { display: none; }
+html:has(.toggle-input:checked) {
+    background-image: url('adfa6df.png');
+}
+html:has(.toggle-input:checked) .marquee-container {
+    width: calc(100% + 20px); 
+    margin: 0 -10px 10px -10px;
+    display: block;
+    font-size: 1.2em;
+    color: red;
+    overflow: hidden;
+    user-select: none;
+    white-space: nowrap;
+}
+html:has(.toggle-input:checked) #images {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 20px 0;
+}
+@media (prefers-reduced-motion: reduce) {
+    .marquee-container {
+        display: none;
+    }
+    #images > img {
+        display: none;
+    }
+    .toggle-label {
+        display: none;
+    }
+}
+.marquee-content {
+    display: inline-block;
+    font-size: 1.2rem;
+    animation: legacy-scroll 20s linear infinite;
+}
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+}
+@keyframes legacy-scroll {
+    0% {
+        transform: translateX(600px);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
