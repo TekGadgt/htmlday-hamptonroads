@@ -1,7 +1,5 @@
 html {
     background-image: none;
-    background-repeat: repeat;
-    background-size: 100px 100px;
 }
 body {
     display: flex;
@@ -58,6 +56,7 @@ footer {
     color: #888;
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 .toggle-group {
     display: flex;
@@ -82,10 +81,12 @@ footer {
 .toggle-label:hover {
     background-color: grey;
 }
-.toggle-input:checked ~ .toggle-label .geocities { display: none; }
-.toggle-input:not(:checked) ~ .toggle-label .no-geocities { display: none; }
+.toggle-input:checked ~ .toggle-label .whimsy { display: none; }
+.toggle-input:not(:checked) ~ .toggle-label .no-whimsy { display: none; }
 html:has(.toggle-input:checked) {
     background-image: url('adfa6df.png');
+    background-repeat: repeat;
+    background-size: 100px 100px;
 }
 html:has(.toggle-input:checked) .marquee-container {
     width: calc(100% + 20px);
@@ -98,9 +99,6 @@ html:has(.toggle-input:checked) .marquee-container {
     white-space: nowrap;
     container-type: inline-size;
 }
-.marquee-track {
-    width: 100%;
-}
 html:has(.toggle-input:checked) #images {
     width: 100%;
     display: flex;
@@ -108,21 +106,13 @@ html:has(.toggle-input:checked) #images {
     gap: 10px;
     margin: 20px 0;
 }
-@media (prefers-reduced-motion: reduce) {
-    .marquee-container {
-        display: none;
-    }
-    #images > img {
-        display: none;
-    }
-    .toggle-label {
-        display: none;
-    }
-}
 .marquee-content {
     display: inline-block;
     font-size: 1.2rem;
     animation: legacy-scroll 20s linear infinite;
+}
+.marquee-track {
+    width: 100%;
 }
 .marquee-container:hover .marquee-content {
     animation-play-state: paused;
@@ -133,5 +123,13 @@ html:has(.toggle-input:checked) #images {
     }
     100% {
         transform: translateX(-100%);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .marquee-container {
+        display: none;
+    }
+    #images > img {
+        display: none;
     }
 }
