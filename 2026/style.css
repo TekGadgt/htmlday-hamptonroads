@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+article {
+    width: 100%;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+div > h2 {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 0;
+    font-size: 1.5em;
+}
+div > p {
+    margin: 0;
+    padding: 5px 0;
+}
+footer {
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #888;
+    display: flex;
+    justify-content: center;
+}
