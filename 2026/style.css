@@ -1,3 +1,8 @@
+html {
+    background-image: url('adfa6df.png');
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
 body {
     display: flex;
     flex-direction: column;
@@ -6,12 +11,44 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+header {
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+marquee {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: red;
+}
 article {
     width: 100%;
     padding: 0 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
     background-color: #f9f9f9;
+}
+#images {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 20px 0;
+}
+#images > img {
+    width: 30%;
+    height: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+    marquee {
+        display: none;
+    }
+    #images > img {
+        display: none;
+    }
 }
 div > h2 {
     margin: 0;
@@ -25,6 +62,10 @@ div > p {
     padding: 5px 0;
 }
 footer {
+    width: 100%;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
     margin-top: 20px;
     font-size: 0.8em;
     color: #888;
