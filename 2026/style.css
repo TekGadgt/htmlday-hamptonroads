@@ -1,5 +1,6 @@
 html {
     background-image: none;
+    background-color: darkcyan;
 }
 body {
     display: flex;
@@ -123,13 +124,5 @@ html:has(.toggle-input:checked) #images {
     }
     100% {
         transform: translateX(-100%);
-    }
-}
-@media (prefers-reduced-motion: reduce) {
-    .marquee-container {
-        display: none;
-    }
-    #images > img {
-        display: none;
     }
 }
