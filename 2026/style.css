@@ -88,7 +88,7 @@ html:has(.toggle-input:checked) {
     background-image: url('adfa6df.png');
 }
 html:has(.toggle-input:checked) .marquee-container {
-    width: calc(100% + 20px); 
+    width: calc(100% + 20px);
     margin: 0 -10px 10px -10px;
     display: block;
     font-size: 1.2em;
@@ -96,6 +96,10 @@ html:has(.toggle-input:checked) .marquee-container {
     overflow: hidden;
     user-select: none;
     white-space: nowrap;
+    container-type: inline-size;
+}
+.marquee-track {
+    width: 100%;
 }
 html:has(.toggle-input:checked) #images {
     width: 100%;
@@ -125,7 +129,7 @@ html:has(.toggle-input:checked) #images {
 }
 @keyframes legacy-scroll {
     0% {
-        transform: translateX(600px);
+        transform: translateX(100cqw);
     }
     100% {
         transform: translateX(-100%);
