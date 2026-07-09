@@ -1,29 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hampton Roads HTML Day!</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        html {
+            background-image: none;
+            background-color: darkcyan;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            width: 100%;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+
+        .marquee-container {
+            display: none;
+        }
+
+        article {
+            width: 100%;
+            padding: 0 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        #images {
+            display: none;
+        }
+
+        #images>img {
+            width: 30%;
+            height: auto;
+        }
+
+        div>h2 {
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            padding: 0;
+            font-size: 1.5em;
+        }
+
+        div>p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        footer {
+            width: 100%;
+            padding: 0 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #888;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .toggle-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .toggle-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-label {
+            padding: 10px 20px;
+            background-color: lightgray;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            border: 1px solid #000;
+            border-top: 1px solid #fff;
+            border-left: 1px solid #fff;
+            box-shadow: 1px 1px 0px 0px #000,
+                -1px -1px 0px 0px #dfdfdf;
+            padding: 4px 12px;
+        }
+
+        .toggle-label:hover {
+            background-color: darkgray;
+        }
+
+        .toggle-label:active {
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
+            border-right: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            box-shadow: 1px 1px 0px 0px #000,
+                -1px -1px 0px 0px #c0c0c0;
+            padding: 5px 11px 3px 13px;
+        }
+
+        .toggle-input:checked~.toggle-label .whimsy {
+            display: none;
+        }
+
+        .toggle-input:not(:checked)~.toggle-label .no-whimsy {
+            display: none;
+        }
+
+        #audio-content {
+            display: none;
+        }
+
+        html:has(.toggle-input:checked) {
+            background-image: url('adfa6df.png');
+            background-repeat: repeat;
+            background-size: 100px 100px;
+        }
+
+        html:has(.toggle-input:checked) .marquee-container {
+            width: calc(100% + 20px);
+            margin: 0 -10px 10px -10px;
+            display: block;
+            font-size: 1.2em;
+            color: red;
+            overflow: hidden;
+            user-select: none;
+            white-space: nowrap;
+            container-type: inline-size;
+        }
+
+        html:has(.toggle-input:checked) #images {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            font-size: 1.2rem;
+            animation: legacy-scroll 20s linear infinite;
+        }
+
+        .marquee-track {
+            width: 100%;
+        }
+
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes legacy-scroll {
+            0% {
+                transform: translateX(100cqw);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <h1>Hampton Roads HTML Day!</h1>
         <div class="marquee-container">
             <div class="marquee-track">
                 <span class="marquee-content">
-                    Write HTML by hand, the old way. No frameworks, no build tools, no drag-and-drop. Just a text file and a browser.
+                    Write HTML by hand, the old way. No frameworks, no build tools, no drag-and-drop. Just a text file
+                    and a browser.
                 </span>
             </div>
         </div>
     </header>
     <article>
         <div class="toggle-group">
-            <input type="checkbox" id="theme-toggle" class="toggle-input">
+            <input type="checkbox" id="theme-toggle" class="toggle-input"
+                onchange="this.checked ? document.getElementById('audio-content').play() : document.getElementById('audio-content').pause()">
             <label for="theme-toggle" class="toggle-label">
                 <span class="whimsy">🪄 Add Whimsy 🎉</span>
                 <span class="no-whimsy">OMG Nevermind! ⛔️</span>
             </label>
+            <audio id="audio-content" src="peanutbutter.mp3" autoplay loop controls></audio>
         </div>
         <div id="images">
             <img src="fire.gif">
@@ -39,25 +221,39 @@
         </div>
         <div id="what-is-it">
             <h2>What is it?</h2>
-            <p>HTML is just writing. You type words, save the file as `.html`, open it in a browser, done. You've made a website. That's the whole trick.</p>
-            <p>Come spend an afternoon making websites by hand, the old way: no frameworks, no build tools, no drag-and-drop. Just a text file and a browser. Never written a tag in your life? Come anyway. You can write for an hour without touching HTML, or go as deep as you want. Already fluent? Come make something weird and share it.</p>
-            <p>There's no wrong way to do this. HTML is forgiving by design, it runs on anything, it doesn't break, and every page is readable by anyone who hits "view source." That's the spirit of the old web: open, human, no magic behind the curtain.</p>
+            <p>HTML is just writing. You type words, save the file as `.html`, open it in a browser, done. You've made a
+                website. That's the whole trick.</p>
+            <p>Come spend an afternoon making websites by hand, the old way: no frameworks, no build tools, no
+                drag-and-drop. Just a text file and a browser. Never written a tag in your life? Come anyway. You can
+                write for an hour without touching HTML, or go as deep as you want. Already fluent? Come make something
+                weird and share it.</p>
+            <p>There's no wrong way to do this. HTML is forgiving by design, it runs on anything, it doesn't break, and
+                every page is readable by anyone who hits "view source." That's the spirit of the old web: open, human,
+                no magic behind the curtain.</p>
         </div>
         <div id="how-it-works">
             <h2>How it works</h2>
-            <p>Show up, quick hello and a short crash course for anyone who wants it, an hour or so of freely writing HTML, then optional sharing at the end.</p>
+            <p>Show up, quick hello and a short crash course for anyone who wants it, an hour or so of freely writing
+                HTML, then optional sharing at the end.</p>
         </div>
         <div id="what-to-bring">
             <h2>What to bring</h2>
-            <p>A laptop (or pen and paper, writing HTML by hand is great). No accounts, no installs, no experience needed.</p>
+            <p>A laptop (or pen and paper, writing HTML by hand is great). No accounts, no installs, no experience
+                needed.</p>
         </div>
         <div id="ai-policy">
             <h2>AI Policy</h2>
-            <p>This is an AI-free event. Hands on keys, write your own HTML like it's 2003. We can't frisk you at the door, but the whole point is the making, so leave the generators at home and build the thing yourself.</p>
+            <p>This is an AI-free event. Hands on keys, write your own HTML like it's 2003. We can't frisk you at the
+                door, but the whole point is the making, so leave the generators at home and build the thing yourself.
+            </p>
         </div>
     </article>
     <footer>
-        <p>Created by <a href="https://html.energy/">HTML Energy</a><span> | </span>Hosted by <a href="https://www.meetup.com/757dev/">757dev</a>, Austin Galyon, <a href="https://chazonabaum.com/">Chazona Baum</a>, and <a href="https://ryanmcgovern.dev/">Ryan McGovern</a></p>
+        <p>Created by <a href="https://html.energy/">HTML Energy</a><span> | </span>Hosted by <a
+                href="https://www.meetup.com/757dev/">757dev</a>, Austin Galyon, <a
+                href="https://chazonabaum.com/">Chazona Baum</a>, and <a href="https://ryanmcgovern.dev/">Ryan
+                McGovern</a></p>
     </footer>
 </body>
+
 </html>
